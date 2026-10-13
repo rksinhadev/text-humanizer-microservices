@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Humanizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="brand">Text Humanizer</div>
+        <nav>
+            <button id="homeNav" class="nav-btn active">Humanizer</button>
+            <button id="historyNav" class="nav-btn">History</button>
+            <button id="authNav" class="nav-btn">Login / Signup</button>
+            <button id="logoutBtn" class="nav-btn hidden">Logout</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1>Make Your Text More Natural</h1>
+            <p>Enter your text, choose a tone, and process it with Text Humanizer.</p>
+        </section>
+
+        <div id="notice" class="notice hidden" role="status"></div>
+
+        <section id="humanizerSection" class="panel">
+            <h2>Text Humanizer</h2>
+
+            <label for="inputText">Enter your text</label>
+            <textarea id="inputText" maxlength="20000"
+                placeholder="Write or paste your text here..."></textarea>
+
+            <div class="text-info">
+                <span id="charCount">0 characters</span>
+                <span>Maximum 20,000 characters</span>
+            </div>
+
+            <label for="tone">Choose tone</label>
+            <select id="tone">
+                <option value="natural">Natural</option>
+                <option value="formal">Formal</option>
+                <option value="casual">Casual</option>
+                <option value="academic">Academic</option>
+            </select>
+
+            <button id="humanizeBtn" class="primary-btn">Humanize Text</button>
+
+            <div id="outputContainer" class="output-container hidden">
+                <div class="output-heading">
+                    <h3>Processed Text</h3>
+                    <button id="copyBtn" class="secondary-btn">Copy</button>
+                </div>
+                <div id="outputText" class="output-text"></div>
+            </div>
+        </section>
+
+        <section id="authSection" class="panel hidden">
+            <h2>Account</h2>
+            <div class="tabs">
+                <button id="loginTab" class="tab-btn active">Login</button>
+                <button id="signupTab" class="tab-btn">Signup</button>
+            </div>
+
+            <form id="authForm">
+                <div id="nameGroup" class="form-group hidden">
+                    <label for="name">Full name</label>
+                    <input id="name" type="text" maxlength="100"
+                        autocomplete="name" placeholder="Enter your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" maxlength="150"
+                        autocomplete="email" required placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" minlength="8"
+                        autocomplete="current-password" required placeholder="Enter your password">
+                </div>
+
+                <button id="authSubmitBtn" class="primary-btn" type="submit">Login</button>
+            </form>
+        </section>
+
+        <section id="historySection" class="panel hidden">
+            <div class="output-heading">
+                <h2>My History</h2>
+                <button id="refreshHistoryBtn" class="secondary-btn">Refresh</button>
+            </div>
+            <p class="muted">Your previously saved text records appear here.</p>
+            <div id="historyList"></div>
+        </section>
+
+        <footer>
+            <p>Text Humanizer — MCA Project</p>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
