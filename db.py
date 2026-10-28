@@ -1,14 +1,19 @@
-
+import os
 import mysql.connector
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 def get_connection():
     return mysql.connector.connect(
-        host="localhost",
-        port=3306,
-        user="root",
-        password="",
-        database="text_humanizer"
+        host=os.getenv("DB_HOST", "localhost"),
+        port=int(os.getenv("DB_PORT", "3306")),
+        user=os.getenv("DB_USER", "root"),
+        password=os.getenv("DB_PASSWORD", "Sahil@1844"),
+        database=os.getenv("DB_NAME", "text_humanizer"),
     )
+
 
 if __name__ == "__main__":
     try:
@@ -18,6 +23,8 @@ if __name__ == "__main__":
         cursor = connection.cursor()
         cursor.execute("SELECT DATABASE()")
         print("Database:", cursor.fetchone()[0])
+        cursor.execute("SHOW TABLES")
+        print("Tables:", [row[0] for row in cursor.fetchall()])
 
         cursor.close()
         connection.close()

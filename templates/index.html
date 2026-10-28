@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Text Humanizer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="glow"></div>
+<main>
+  <nav class="nav"><b class="logo">Text Humanizer</b><div id="navR"></div></nav>
+  <header>
+    <span class="pill" id="status"><i></i><b>Checking AI service…</b></span>
+    <h1>Make your text sound <em>human</em></h1>
+    <p>Paste robotic writing, pick a tone, and let the transformer rewrite it.</p>
+  </header>
+  <section class="tones" id="tones">
+    <button class="active" data-tone="natural">Natural</button>
+    <button data-tone="casual">Casual</button>
+    <button data-tone="formal">Formal</button>
+    <button data-tone="academic">Academic</button>
+  </section>
+  <section class="grid">
+    <div class="card">
+      <div class="bar"><span>Original</span><small id="inCount">0 words</small></div>
+      <textarea id="input" maxlength="20000" placeholder="Paste your text here…"></textarea>
+    </div>
+    <div class="card out">
+      <div class="bar"><span>Humanized</span><small id="outCount">0 words</small></div>
+      <div id="output" class="result">Your result appears here.</div>
+      <div class="loader" id="loader"><span></span><span></span><span></span></div>
+    </div>
+  </section>
+  <div class="actions">
+    <button id="go" class="primary">✨ Humanize</button>
+    <button id="copy" class="ghost">Copy</button>
+    <button id="clear" class="ghost">Clear</button>
+    <small id="meta"></small>
+  </div>
+  <p class="err" id="err"></p>
+</main>
+<div class="modal" id="modal">
+  <form class="box" id="authForm">
+    <h2 id="authTitle">Welcome back</h2>
+    <input id="name" placeholder="Full name" autocomplete="name">
+    <input id="email" type="email" placeholder="Email" autocomplete="email" required>
+    <input id="pw" type="password" placeholder="Password" autocomplete="current-password" required>
+    <p class="err" id="authErr"></p>
+    <button class="primary" id="authBtn" type="submit">Log in</button>
+    <button class="linkbtn" id="swap" type="button">New here? Sign up</button>
+    <button class="linkbtn" id="closeAuth" type="button">Cancel</button>
+  </form>
+</div>
+<aside class="drawer" id="drawer">
+  <div class="bar"><span>Your history</span><button class="linkbtn" id="closeDrawer">✕</button></div>
+  <div id="hist"></div>
+</aside>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
